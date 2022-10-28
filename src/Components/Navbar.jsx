@@ -1,7 +1,7 @@
 import React from "react";
 
 function Navbar() {
-  return <div>Navbar</div>;
+  return <nav className=" bg-primary text-accent">Navbar</nav>;
 }
 
 export default Navbar;
