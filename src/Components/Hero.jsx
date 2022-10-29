@@ -1,105 +1,63 @@
-import React, { useRef } from "react";
-import Typed from "react-typed";
-import emailjs from "@emailjs/browser";
+import React from "react";
 import { memo } from "react";
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
+import Typed from "react-typed";
+import heroImage from "../assets/images/heroImage.jpg";
 
 function Hero() {
-  const form = useRef();
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "service_dlla7eo",
-        "template_1ogqzus",
-        form.current,
-        "85nEeGML6gHcBfow4"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
   return (
-    <section className="lg:px-28 px-6 py-16">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 duration-500">
-        <div className=" lg:col-span-2 bg-dark-secondary rounded-xl  px-8 py-6">
-          <div className="max-w-3xl lg:max-w-full items-center text-center lg:text-left lg:items-start flex flex-col h-full justify-center space-y-6">
-            <div className="md:text-6xl text-5xl duration-500 text-secondary-accent font-black">
-              <h1 className="">Accelerate</h1>
-              <h1 className=""> Creative Design</h1>
-              <h1 className="">at a Cosmic Scale</h1>
+    <section className="lg:px-28 h-full px-6 py-32">
+      <div className="flex lg:flex-row flex-col gap-8">
+        <div className="font-[Montserrat] flex-1 items-center text-center lg:text-left lg:items-start flex flex-col space-y-6">
+          <h2 className="text-xl font-semibold leading-none">
+            A Full Stack Experience
+          </h2>
+          <h1 className="md:text-[5rem] sm:text-[4rem] text-[2rem] duration-500 font-extrabold leading-none">
+            THAT BRINGS IT ALL TOGETHER
+          </h1>
+          <h2 className="sm:text-3xl duration-500 text-2xl font-semibold leading-none">
+            <Typed
+              strings={[
+                "We help in Web Development.",
+                "We help in Web Design.",
+                "We help in Mobile App Development.",
+                "We help in Digital Marketing.",
+                "We help in E-commerce Website Development.",
+              ]}
+              typeSpeed={75}
+              backSpeed={75}
+              loop={true}
+            />
+          </h2>
+          <div className="sm:space-x-8 flex flex-col sm:flex-row sm:space-y-0 space-y-3 pt-8">
+            <button className="px-6 py-3 bg-active-accent border-2 font-[Montserrat] font-bold rounded-xl border-active-accent text-white text-xl">
+              My Portfolio
+            </button>
+            <button className="px-6 py-3 duration-300 hover:bg-active-accent hover:border-active-accent bg-dark-primary border-2 font-[Montserrat] font-bold rounded-xl border-white text-white text-xl">
+              Contact me
+            </button>
+          </div>
+          <div className="flex space-x-4 text-2xl py-4">
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
+              <FaFacebook className="text-[#3b5998] cursor-pointer duration-300 text-3xl" />
             </div>
-            <p className="text-xl">
-              Hire experts to create your website and boost your company's
-              success. With Clean UI, you can count on top-notch web development
-              services.
-            </p>
-            <h1 className="md:text-4xl text-3xl duration-500 font-bold text-secondary-accent">
-              <Typed
-                strings={[
-                  "We help in Web Development Services.",
-                  "We help in Web Design Services.",
-                  "We help in Mobile App Development Services.",
-                  "We help in Digital Marketing Services.",
-                  "We help in E-Commerce Website Development Services.",
-                ]}
-                typeSpeed={75}
-                backSpeed={75}
-                loop={true}
-              />
-            </h1>
-            {/* CTA */}
-            <div className="">
-              <button className="px-8 py-3 bg-contrast/80 hover:bg-contrast rounded-xl text-secondary-accent text-xl font-semibold">
-                Get Started!
-              </button>
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
+              <FaInstagram className="text-[#8a3ab9] cursor-pointer duration-300 " />
+            </div>
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
+              <FaTwitter className="text-[#00AACC] cursor-pointer duration-300 " />
+            </div>
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
+              <FaLinkedin className="text-[#3b5998] cursor-pointer duration-300" />
             </div>
           </div>
         </div>
-        <div className=" bg-dark-secondary  space-y-6 rounded-xl px-4 py-6 flex flex-col items-center">
-          <h1 className="text-4xl font-semibold text-center text-contrast">
-            Book a Discovery Call Now
-          </h1>
-          <form ref={form} onSubmit={sendEmail} className="space-y-4 max-w-lg">
-            <input
-              type="text"
-              required
-              name="name"
-              className="px-6 py-3 focus:border-contrast bg-transparent w-full border border-accent/60 rounded-xl focus:outline-none"
-              placeholder="Name*"
-            />
-            <input
-              type="email"
-              required
-              name="email"
-              className="px-6 py-3 focus:border-contrast bg-transparent w-full border border-accent/60 rounded-xl focus:outline-none"
-              placeholder="Email*"
-            />
-            <input
-              type="number"
-              required
-              name="contact"
-              className="px-6 py-3 focus:border-contrast bg-transparent w-full border border-accent/60 rounded-xl focus:outline-none"
-              placeholder="Contact*"
-            />
-            <textarea
-              name="message"
-              placeholder="Message*"
-              id=""
-              cols="30"
-              rows="5"
-              required
-              className="px-6 py-3 focus:border-contrast bg-transparent w-full border border-accent/60 rounded-xl focus:outline-none"></textarea>
-            <button className="bg-gradient-to-tr rounded-xl duration-200 hover:from-purple hover:to-orange from-orange to-purple w-full py-2 text-secondary-accent text-2xl">
-              Contact Now
-            </button>
-          </form>
+        <div className="basis-1/3">
+          <img
+            src={heroImage}
+            alt=""
+            className="w-full h-full object-contain"
+          />
         </div>
       </div>
     </section>

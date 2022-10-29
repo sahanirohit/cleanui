@@ -4,12 +4,12 @@
 
 @layer base {
   body {
-    @apply bg-dark-primary text-accent font-[poppins];
+    @apply bg-dark-primary text-white;
   }
 }
 
 @layer components {
   .active-nav {
-    @apply text-secondary-accent font-semibold;
+    @apply text-active-accent font-semibold;
   }
 }

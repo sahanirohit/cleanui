@@ -33,10 +33,7 @@ function Demos() {
                 </h1>
                 <div className="flex space-x-3">
                   <button className="flex-1 bg-contrast text-secondary-contrast ">
-                    <a
-                      href={item.url}
-                      target={"_blank"}
-                      className="py-2 w-full">
+                    <a href={item.url} className="py-2 w-full">
                       Preview
                     </a>
                   </button>

@@ -48,13 +48,17 @@ function Navbar() {
               Demos
             </Link>
           </li>
-          <li className="px-3 text-secondary-contrast rounded-md bg-contrast font-bold duration-200 hover:bg-primary cursor-pointer border border-contrast/80 py-0.5">
+          {/* <li className="px-3 text-white rounded-md bg-contrast font-semibold cursor-pointer border border-contrast py-1">
             <Link to={"/contact"} className="">
               Contact
             </Link>
-          </li>
+          </li> */}
         </ul>
-
+        <Link
+          to={"/contact"}
+          className="px-3 text-white hidden md:block rounded-md bg-contrast font-semibold cursor-pointer border border-contrast py-1">
+          Contact
+        </Link>
         {/* Mobile Nav */}
         <ul
           className={`md:hidden transform ${
