@@ -4,9 +4,10 @@ module.exports = {
   theme: {
     colors: {
       "dark-primary": "#222222",
-      accent: "#A2A2A2",
-      contrast: "#658CF5",
-      "dark-secondary": "#333333",
+      accent: "#C2C0C0",
+      "secondary-contrast": "#071C44",
+      contrast: "#64E9F5",
+      "dark-secondary": "#292828",
       transparent: "transparent",
       orange: "#FFBB00",
       purple: "#9805E7",

@@ -28,14 +28,14 @@ function Hero() {
   return (
     <section className="lg:px-28 px-6 py-16">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 duration-500">
-        <div className=" lg:col-span-2 bg-dark-secondary/60 rounded-xl  px-8 py-6">
+        <div className=" lg:col-span-2 bg-dark-secondary rounded-xl  px-8 py-6">
           <div className="max-w-3xl lg:max-w-full items-center text-center lg:text-left lg:items-start flex flex-col h-full justify-center space-y-6">
             <div className="md:text-6xl text-5xl duration-500 text-secondary-accent font-black">
               <h1 className="">Accelerate</h1>
               <h1 className=""> Creative Design</h1>
               <h1 className="">at a Cosmic Scale</h1>
             </div>
-            <p className="text-lg">
+            <p className="text-xl">
               Hire experts to create your website and boost your company's
               success. With Clean UI, you can count on top-notch web development
               services.
@@ -47,7 +47,7 @@ function Hero() {
                   "We help in Web Design Services.",
                   "We help in Mobile App Development Services.",
                   "We help in Digital Marketing Services.",
-                  "We help in E-commerce Website Development Services.",
+                  "We help in E-Commerce Website Development Services.",
                 ]}
                 typeSpeed={75}
                 backSpeed={75}
@@ -62,7 +62,7 @@ function Hero() {
             </div>
           </div>
         </div>
-        <div className=" bg-dark-secondary/60  space-y-6 rounded-xl px-4 py-6 flex flex-col items-center">
+        <div className=" bg-dark-secondary  space-y-6 rounded-xl px-4 py-6 flex flex-col items-center">
           <h1 className="text-4xl font-semibold text-center text-contrast">
             Book a Discovery Call Now
           </h1>

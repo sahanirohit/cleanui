@@ -7,8 +7,8 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const url = useLocation();
   return (
-    <header className="h-24">
-      <nav className="lg:px-28 z-50 bg-dark-primary px-6 fixed top-0 w-full h-24 flex items-center justify-between">
+    <header className="h-20">
+      <nav className="lg:px-28 z-50 bg-dark-primary px-6 fixed top-0 w-full h-20 flex items-center justify-between">
         <div
           className={`flex items-center text-contrast justify-between w-full md:w-auto ${
             open ? "z-50" : ""
@@ -48,7 +48,7 @@ function Navbar() {
               Demos
             </Link>
           </li>
-          <li className="px-3 hover:text-contrast rounded-md bg-contrast text-secondary-accent font-bold duration-200 hover:bg-primary cursor-pointer border border-contrast/80 py-0.5">
+          <li className="px-3 text-secondary-contrast rounded-md bg-contrast font-bold duration-200 hover:bg-primary cursor-pointer border border-contrast/80 py-0.5">
             <Link to={"/contact"} className="">
               Contact
             </Link>

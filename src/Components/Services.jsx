@@ -18,6 +18,21 @@ const serviceData = [
     title: "Software Development",
     content: "We use latest .Net framework to develop software applications.",
   },
+  {
+    img: require("../assets/images/digital-marketing.jpg"),
+    title: "Digital Marketing",
+    content: "We use latest .Net framework to develop software applications.",
+  },
+  {
+    img: require("../assets/images/ecommerce-development.jpg"),
+    title: "E-Commerce Website Development",
+    content: "We use latest .Net framework to develop software applications.",
+  },
+  {
+    img: require("../assets/images/web-hosting-services.jpg"),
+    title: "Web Hosting Services",
+    content: "We use latest .Net framework to develop software applications.",
+  },
 ];
 
 function Services() {
@@ -43,6 +58,7 @@ function Services() {
               <div className="h-60 overflow-hidden rounded-xl">
                 <img
                   src={item.img}
+                  loading="lazyload"
                   alt=""
                   className=" rounded-xl w-full h-full cursor-pointer transform hover:scale-110 duration-300 object-cover object-center"
                 />

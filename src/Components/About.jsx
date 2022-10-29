@@ -44,11 +44,11 @@ function About() {
         </div>
       </div>
       <div className="grid lg:grid-cols-2 gap-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-1 bg-dark-secondary/60 rounded-xl">
+        <div className="grid md:grid-cols-2 lg:grid-cols-1 bg-dark-secondary rounded-xl">
           {aboutServiceData.map((item, index) => {
             return (
               <div key={index} className="flex gap-4 p-6">
-                <div className=" shrink-0 w-14 h-14 rounded-full flex items-center justify-center border-dashed hover:border-contrast duration-200  hover:text-contrast border-2 border-accent">
+                <div className="shrink-0 w-14 h-14 rounded-full flex items-center justify-center border-dashed hover:border-contrast duration-200  hover:text-contrast border-2 border-accent">
                   {item.icon}
                 </div>
                 <div className="">
@@ -68,14 +68,14 @@ function About() {
             className="w-full h-full object-cover object-left rounded-xl"
           />
         </div>
-        <div className=" bg-dark-secondary/60 rounded-xl">
+        <div className=" bg-dark-secondary rounded-xl">
           <img
             src={aboutSectionImage[1]}
             alt=""
             className="w-full h-full object-cover rounded-xl"
           />
         </div>
-        <div className="flex flex-col justify-between py-8 px-6 bg-dark-secondary/60 rounded-xl text-lg">
+        <div className="flex flex-col space-y-4 justify-between py-8 px-6 bg-dark-secondary rounded-xl text-lg">
           <h2 className="text-3xl font-bold text-secondary-accent">
             Why your Business requires Digital Solutions ?
           </h2>
@@ -107,7 +107,7 @@ function About() {
             from web traffic converts them to your prospects.
           </p>
         </div>
-        <div className=" bg-dark-secondary/60 flex flex-col justify-evenly rounded-xl px-6 py-8 text-lg">
+        <div className=" bg-dark-secondary flex flex-col justify-evenly rounded-xl px-6 py-8 text-lg">
           <h2 className="text-3xl font-bold text-secondary-accent">
             How it is done ?
           </h2>
@@ -124,7 +124,7 @@ function About() {
             Google Play and web as per your requirements.
           </p>
         </div>
-        <div className=" bg-dark-secondary/60 rounded-xl">
+        <div className=" bg-dark-secondary rounded-xl">
           <img
             src={aboutSectionImage[2]}
             alt=""

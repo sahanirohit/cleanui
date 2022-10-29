@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import About from "./Components/About";
+import Demos from "./Components/Demos";
+import Footer from "./Components/Footer";
 import Hero from "./Components/Hero";
 import Navbar from "./Components/Navbar";
 import Services from "./Components/Services";
@@ -19,6 +21,7 @@ function App() {
               <Hero />
               <About />
               <Services />
+              <Footer />
             </>
           }
         />
@@ -28,6 +31,7 @@ function App() {
             <>
               <Navbar />
               <About />
+              <Footer />
             </>
           }
         />
@@ -37,11 +41,21 @@ function App() {
             <>
               <Navbar />
               <Services />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/demos"
+          element={
+            <>
+              <Navbar />
+              <Demos />
+              <Footer />
             </>
           }
         />
       </Routes>
-      <div className="h-[1000px]"></div>
     </div>
   );
 }
