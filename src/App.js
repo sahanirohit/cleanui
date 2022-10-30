@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import Contact from "./Components/Contact";
 import Newsletter from "./Components/Newsletter";
+import Testimonials from "./Components/Testimonials";
 
 import "./index.css";
 
@@ -21,9 +22,9 @@ function App() {
           path="/"
           element={
             <>
-              <Navbar />
-              <Hero />
               <Suspense fallback={<div>Loading...</div>}>
+                <Navbar />
+                <Hero />
                 <About />
                 <Services />
                 <Newsletter />
@@ -37,9 +38,9 @@ function App() {
           path="/about"
           element={
             <>
-              <Navbar />
-              <About />
               <Suspense fallback={<div>Loading...</div>}>
+                <Navbar />
+                <About />
                 <div className="py-20">
                   <Newsletter />
                 </div>
@@ -52,9 +53,9 @@ function App() {
           path="/services"
           element={
             <>
-              <Navbar />
-              <Services />
               <Suspense fallback={<div>Loading...</div>}>
+                <Navbar />
+                <Services />
                 <Footer />
               </Suspense>
             </>
@@ -64,9 +65,21 @@ function App() {
           path="/portfolio"
           element={
             <>
-              <Navbar />
-              <Portfolio />
               <Suspense fallback={<div>Loading...</div>}>
+                <Navbar />
+                <Portfolio />
+                <Footer />
+              </Suspense>
+            </>
+          }
+        />
+        <Route
+          path="/testimonial"
+          element={
+            <>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Navbar />
+                <Testimonials />
                 <Footer />
               </Suspense>
             </>
@@ -76,9 +89,9 @@ function App() {
           path="/contact"
           element={
             <>
-              <Navbar />
-              <Contact />
               <Suspense fallback={<div>Loading...</div>}>
+                <Navbar />
+                <Contact />
                 <Footer />
               </Suspense>
             </>

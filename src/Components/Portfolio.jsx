@@ -36,6 +36,7 @@ const demosImage = [
 function Portfolio() {
   return (
     <section className="lg:px-28 px-6 py-16">
+      {/* Title */}
       <div className="text-center pb-16 flex items-center flex-col">
         <div className="max-w-xl space-y-4">
           <h1 className="text-4xl font-black text-secondary-accent tracking-widest">

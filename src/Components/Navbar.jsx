@@ -50,11 +50,15 @@ function Navbar() {
               Portfolio
             </Link>
           </li>
-          {/* <li className="px-3 text-white rounded-md bg-contrast font-semibold cursor-pointer border border-contrast py-1">
-            <Link to={"/contact"} className="">
-              Contact
+          <li
+            className={`px-6 ${
+              url.pathname === "/testimonial" ? "active-nav" : ""
+            }`}
+            onClick={() => setOpen(!open)}>
+            <Link to={"/testimonial"} className="py-2">
+              Testimonial
             </Link>
-          </li> */}
+          </li>
         </ul>
         <Link
           to={"/contact"}
@@ -96,6 +100,15 @@ function Navbar() {
             onClick={() => setOpen(!open)}>
             <Link to={"/portfolio"} className="py-2">
               Portfolio
+            </Link>
+          </li>
+          <li
+            className={`px-6 ${
+              url.pathname === "/testimonial" ? "active-nav" : ""
+            }`}
+            onClick={() => setOpen(!open)}>
+            <Link to={"/testimonial"} className="py-2">
+              Testimonial
             </Link>
           </li>
           <button
