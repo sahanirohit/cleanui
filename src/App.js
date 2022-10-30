@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
+import Newsletter from "./Components/Newsletter";
 
 import "./index.css";
 
@@ -24,6 +25,7 @@ function App() {
               <Suspense fallback={<div>Loading...</div>}>
                 <About />
                 <Services />
+                <Newsletter />
                 <Portfolio />
                 <Footer />
               </Suspense>
@@ -37,6 +39,9 @@ function App() {
               <Navbar />
               <About />
               <Suspense fallback={<div>Loading...</div>}>
+                <div className="py-20">
+                  <Newsletter />
+                </div>
                 <Footer />
               </Suspense>
             </>

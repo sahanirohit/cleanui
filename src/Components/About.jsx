@@ -7,7 +7,7 @@ function About() {
     <section className="lg:px-28 px-6">
       <div className="text-center pb-16 flex items-center flex-col">
         <div className="max-w-xl space-y-4">
-          <h1 className="text-4xl font-black text-secondary-accent">
+          <h1 className="text-4xl font-black text-secondary-accent tracking-widest">
             About Me
           </h1>
           <div className="relative before:absolute before:w-16 before:h-[2px] before:rounded-full before:bg-active-accent flex items-center justify-center before:bottom-0"></div>

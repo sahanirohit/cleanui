@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { memo } from "react";
 
 function Footer() {
   return (
     <footer className="lg:px-28 px-6 bg-dark-secondary pt-16">
-      <div className="grid grid-cols-4 pb-8 gap-6">
+      <div className="grid sm:grid-cols-2 md:grid-cols-4 pb-8 gap-12 md:gap-6">
         <div className="flex flex-col space-y-4">
           <h1 className="text-4xl font-black text-contrast">CUI.</h1>
           <p className="text-lg">
@@ -59,7 +60,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="relative flex items-center justify-between before:absolute before:w-full before:h-[1px] before:bg-accent before:left-0 before:top-0 py-8">
+      <div className="relative flex lg:flex-row flex-col text-center lg:text-left lg:items-start space-y-4 lg:space-y-0 items-center justify-between before:absolute before:w-full before:h-[1px] before:bg-accent before:left-0 before:top-0 py-8">
         {/* <div className="relative before:absolute before:w-full before:h-[1px] before:bg-accent before:left-0 before:bottom-0"></div> */}
         <h2 className="text-lg">
           Copyright &copy; 2022 all right reserved by{" "}
@@ -79,4 +80,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default memo(Footer);

@@ -65,28 +65,44 @@ function Navbar() {
         <ul
           className={`md:hidden transform ${
             open ? "translate-x-0" : "-translate-x-full"
-          } duration-200 fixed py-28 space-y-6 text-xl inset-0`}>
-          <li className="px-6 active-nav">
+          } duration-200 fixed py-28 space-y-6 text-xl inset-0 bg-dark-primary w-full h-full`}>
+          <li
+            className={`px-6 ${url.pathname === "/" ? "active-nav" : ""}`}
+            onClick={() => setOpen(!open)}>
             <Link to={"/"} className="py-2">
               Home
             </Link>
           </li>
-          <li className="px-6">
+          <li
+            className={`px-6 ${url.pathname === "/about" ? "active-nav" : ""}`}
+            onClick={() => setOpen(!open)}>
             <Link to={"/about"} className="py-2">
               About
             </Link>
           </li>
-          <li className="px-6">
+          <li
+            className={`px-6 ${
+              url.pathname === "/services" ? "active-nav" : ""
+            }`}
+            onClick={() => setOpen(!open)}>
             <Link to={"/services"} className="py-2">
               Services
             </Link>
           </li>
-          <li className="px-6">
+          <li
+            className={`px-6 ${
+              url.pathname === "/portfolio" ? "active-nav" : ""
+            }`}
+            onClick={() => setOpen(!open)}>
             <Link to={"/portfolio"} className="py-2">
               Portfolio
             </Link>
           </li>
-          <button className="px-6">
+          <button
+            className={`px-6 ${
+              url.pathname === "/contact" ? "active-nav" : ""
+            }`}
+            onClick={() => setOpen(!open)}>
             <Link to={"/contact"} className="">
               Contact
             </Link>

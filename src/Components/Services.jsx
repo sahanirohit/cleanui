@@ -40,22 +40,19 @@ function Services() {
     <section className="lg:px-28 px-6 py-16">
       <div className="text-center pb-16 flex items-center flex-col">
         <div className="max-w-xl space-y-4">
-          <h1 className="text-4xl font-black text-secondary-accent">
+          <h1 className="text-4xl font-black text-secondary-accent tracking-widest">
             Services
           </h1>
-          <p className="">
-            We love to help you in all these service which we offer below. If
-            you have any query then please contact us.
-          </p>
+          <div className="relative before:absolute before:w-16 before:h-[2px] before:rounded-full before:bg-active-accent flex items-center justify-center before:bottom-0"></div>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {serviceData.map((item, index) => {
           return (
             <div
               className="flex flex-col space-y-4  bg-dark-secondary p-4 rounded-xl"
               key={index}>
-              <div className="h-60 overflow-hidden rounded-xl">
+              <div className="sm:h-60 h-72 overflow-hidden rounded-xl">
                 <img
                   src={item.img}
                   loading="lazy"
@@ -66,7 +63,7 @@ function Services() {
               <h2 className="text-xl font-bold text-white">{item.title}</h2>
               <p className="">{item.content}</p>
               <div className="">
-                <button className="px-4 py-1.5 bg-white text-[black] font-semibold">
+                <button className="px-4 py-1.5 bg-contrast text-white font-bold">
                   Know more
                 </button>
               </div>

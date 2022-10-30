@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behaviar: smooth;
+  }
   body {
     @apply bg-dark-primary text-white;
   }
@@ -11,5 +14,37 @@
 @layer components {
   .active-nav {
     @apply text-active-accent font-semibold;
+  }
+}
+
+.bottom {
+  animation: animate-bottom 3s infinite;
+}
+
+@keyframes animate-bottom {
+  0% {
+    bottom: 128px;
+  }
+  50% {
+    bottom: 144px;
+  }
+  100% {
+    bottom: 128px;
+  }
+}
+
+.top {
+  animation: animate-top 3s infinite;
+}
+
+@keyframes animate-top {
+  0% {
+    top: 128px;
+  }
+  50% {
+    top: 144px;
+  }
+  100% {
+    top: 128px;
   }
 }
