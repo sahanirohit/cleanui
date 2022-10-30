@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
+import Contact from "./Components/Contact";
 import Newsletter from "./Components/Newsletter";
 
 import "./index.css";
@@ -65,6 +66,18 @@ function App() {
             <>
               <Navbar />
               <Portfolio />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Footer />
+              </Suspense>
+            </>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <>
+              <Navbar />
+              <Contact />
               <Suspense fallback={<div>Loading...</div>}>
                 <Footer />
               </Suspense>

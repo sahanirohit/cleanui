@@ -27,7 +27,7 @@ function Footer() {
               <Link to={"/services"}>Services</Link>
             </li>
             <li className="duration-300 hover:translate-x-3 transform hover:text-secondary-accent">
-              <Link to={"/demos"}>Demos</Link>
+              <Link to={"/portfolio"}>Portfolio</Link>
             </li>
             <li className="duration-300 hover:translate-x-3 transform hover:text-secondary-accent">
               <Link to={"/contact"}>Contact</Link>
@@ -39,10 +39,18 @@ function Footer() {
             Follow Us
           </h2>
           <div className="flex space-x-4 text-2xl">
-            <FaFacebook className="hover:text-[#0047CB] cursor-pointer duration-300 transform hover:-translate-y-2" />
-            <FaInstagram className="hover:text-[#CC0063] cursor-pointer duration-300 transform hover:-translate-y-2" />
-            <FaTwitter className="hover:text-[#00AACC] cursor-pointer duration-300 transform hover:-translate-y-2" />
-            <FaLinkedin className="hover:text-[#0047CB] cursor-pointer duration-300 transform hover:-translate-y-2" />
+            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
+              <FaFacebook className="text-[#3b5998] cursor-pointer duration-300" />
+            </div>
+            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
+              <FaInstagram className="text-[#8a3ab9] cursor-pointer duration-300 " />
+            </div>
+            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
+              <FaTwitter className="text-[#00AACC] cursor-pointer duration-300 " />
+            </div>
+            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
+              <FaLinkedin className="text-[#3b5998] cursor-pointer duration-300" />
+            </div>
           </div>
         </div>
         <div className="flex flex-col space-y-4">
@@ -59,13 +67,16 @@ function Footer() {
           </button>
         </div>
       </div>
-
+      <div className="relative before:absolute before:w-full before:h-[1px] before:bg-white/10 before:rounded-full before:left-0 before:bottom-0"></div>
       <div className="relative flex lg:flex-row flex-col text-center lg:text-left lg:items-start space-y-4 lg:space-y-0 items-center justify-between before:absolute before:w-full before:h-[1px] before:bg-accent before:left-0 before:top-0 py-8">
-        {/* <div className="relative before:absolute before:w-full before:h-[1px] before:bg-accent before:left-0 before:bottom-0"></div> */}
         <h2 className="text-lg">
           Copyright &copy; 2022 all right reserved by{" "}
           <strong className=" text-secondary-accent">Clean UI</strong>. Design
-          by <strong className=" text-contrast underline">Rohit Sahani</strong>.
+          by{" "}
+          <strong className=" text-contrast underline">
+            <Link to={"/"}>Rohit Sahani</Link>
+          </strong>
+          .
         </h2>
         <ul className="text-lg flex space-x-3">
           <li className="hover:text-secondary-accent">
