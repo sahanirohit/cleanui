@@ -56,6 +56,7 @@ function Hero() {
           <img
             src={heroImage}
             alt=""
+            loading="lazy"
             className="w-full h-full object-contain"
           />
         </div>

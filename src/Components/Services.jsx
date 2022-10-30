@@ -58,15 +58,18 @@ function Services() {
               <div className="h-60 overflow-hidden rounded-xl">
                 <img
                   src={item.img}
-                  loading="lazyload"
+                  loading="lazy"
                   alt=""
                   className=" rounded-xl w-full h-full cursor-pointer transform hover:scale-110 duration-300 object-cover object-center"
                 />
               </div>
-              <h2 className="text-xl font-semibold text-contrast">
-                {item.title}
-              </h2>
+              <h2 className="text-xl font-bold text-white">{item.title}</h2>
               <p className="">{item.content}</p>
+              <div className="">
+                <button className="px-4 py-1.5 bg-white text-[black] font-semibold">
+                  Know more
+                </button>
+              </div>
             </div>
           );
         })}

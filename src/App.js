@@ -1,12 +1,15 @@
+import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import About from "./Components/About";
-import Demos from "./Components/Demos";
-import Footer from "./Components/Footer";
-import Hero from "./Components/Hero";
-import Navbar from "./Components/Navbar";
-import Services from "./Components/Services";
-// import Slider from "./Components/Slider";
+
 import "./index.css";
+
+// Lazy Components
+const Hero = lazy(() => import("./Components/Hero"));
+const Footer = lazy(() => import("./Components/Footer"));
+const Portfolio = lazy(() => import("./Components/Portfolio"));
+const Navbar = lazy(() => import("./Components/Navbar"));
+const Services = lazy(() => import("./Components/Services"));
+const About = lazy(() => import("./Components/About"));
 
 function App() {
   return (
@@ -17,11 +20,13 @@ function App() {
           element={
             <>
               <Navbar />
-              {/* <Slider /> */}
               <Hero />
-              <About />
-              <Services />
-              <Footer />
+              <Suspense fallback={<div>Loading...</div>}>
+                <About />
+                <Services />
+                <Portfolio />
+                <Footer />
+              </Suspense>
             </>
           }
         />
@@ -31,7 +36,9 @@ function App() {
             <>
               <Navbar />
               <About />
-              <Footer />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Footer />
+              </Suspense>
             </>
           }
         />
@@ -41,17 +48,21 @@ function App() {
             <>
               <Navbar />
               <Services />
-              <Footer />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Footer />
+              </Suspense>
             </>
           }
         />
         <Route
-          path="/demos"
+          path="/portfolio"
           element={
             <>
               <Navbar />
-              <Demos />
-              <Footer />
+              <Portfolio />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Footer />
+              </Suspense>
             </>
           }
         />

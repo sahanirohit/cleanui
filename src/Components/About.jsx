@@ -52,7 +52,12 @@ function About() {
           </div>
         </div>
         <div className="flex h-[28rem]">
-          <img src={me} alt="me" className="w-full h-full object-cover" />
+          <img
+            src={me}
+            loading="lazy"
+            alt="me"
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
     </section>

@@ -8,7 +8,7 @@ module.exports = {
       "active-accent": "#EA478B",
       "secondary-contrast": "#071C44",
       contrast: "#EA478B",
-      "dark-secondary": "#292828",
+      "dark-secondary": "#404040",
       transparent: "transparent",
       orange: "#FFBB00",
       purple: "#9805E7",

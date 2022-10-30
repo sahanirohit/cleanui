@@ -53,7 +53,7 @@ function Footer() {
             className="px-4 py-3 bg-transparent border border-accent w-full focus:outline-none focus:border-contrast"
             placeholder="Enter your email..."
           />
-          <button className="px-4 py-3 text-xl bg-contrast text-secondary-contrast">
+          <button className="px-4 py-3 text-xl bg-contrast text-white">
             Subscribe
           </button>
         </div>

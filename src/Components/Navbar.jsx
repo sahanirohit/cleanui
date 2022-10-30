@@ -43,9 +43,11 @@ function Navbar() {
             </Link>
           </li>
           <li
-            className={`px-6 ${url.pathname === "/demos" ? "active-nav" : ""}`}>
-            <Link to={"/demos"} className="py-2">
-              Demos
+            className={`px-6 ${
+              url.pathname === "/portfolio" ? "active-nav" : ""
+            }`}>
+            <Link to={"/portfolio"} className="py-2">
+              Portfolio
             </Link>
           </li>
           {/* <li className="px-3 text-white rounded-md bg-contrast font-semibold cursor-pointer border border-contrast py-1">
@@ -70,22 +72,22 @@ function Navbar() {
             </Link>
           </li>
           <li className="px-6">
-            <Link to={"/"} className="py-2">
+            <Link to={"/about"} className="py-2">
               About
             </Link>
           </li>
           <li className="px-6">
-            <Link to={"/"} className="py-2">
+            <Link to={"/services"} className="py-2">
               Services
             </Link>
           </li>
           <li className="px-6">
-            <Link to={"/"} className="py-2">
-              Demos
+            <Link to={"/portfolio"} className="py-2">
+              Portfolio
             </Link>
           </li>
           <button className="px-6">
-            <Link to={"/"} className="">
+            <Link to={"/contact"} className="">
               Contact
             </Link>
           </button>

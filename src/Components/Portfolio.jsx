@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const demosImage = [
   {
@@ -13,7 +13,7 @@ const demosImage = [
   },
 ];
 
-function Demos() {
+function Portfolio() {
   return (
     <section className="lg:px-28 px-6 py-16">
       <div className="grid grid-cols-3 gap-8">
@@ -24,6 +24,7 @@ function Demos() {
                 <img
                   src={item.img}
                   alt=""
+                  loading="lazy"
                   className="w-full h-full rounded-t-xl object-cover"
                 />
               </div>
@@ -32,12 +33,12 @@ function Demos() {
                   {item.title}
                 </h1>
                 <div className="flex space-x-3">
-                  <button className="flex-1 bg-contrast text-secondary-contrast ">
+                  <button className="flex-1 bg-contrast text-white ">
                     <a href={item.url} className="py-2 w-full">
                       Preview
                     </a>
                   </button>
-                  <button className="flex-1 bg-contrast text-secondary-contrast py-2">
+                  <button className="flex-1 bg-contrast text-white py-2">
                     Buy Now
                   </button>
                 </div>
@@ -50,4 +51,4 @@ function Demos() {
   );
 }
 
-export default Demos;
+export default memo(Portfolio);
