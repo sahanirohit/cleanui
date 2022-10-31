@@ -22,6 +22,7 @@ function Hero() {
                 "We help in Web Design.",
                 "We help in Mobile App Development.",
                 "We help in Digital Marketing.",
+                "We help in Web Hosting Service.",
                 "We help in E-commerce Website Development.",
               ]}
               typeSpeed={75}

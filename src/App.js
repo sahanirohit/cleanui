@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import Contact from "./Components/Contact";
 import Newsletter from "./Components/Newsletter";
+import Signup from "./Components/Signup";
 import Testimonials from "./Components/Testimonials";
 
 import "./index.css";
@@ -92,6 +93,18 @@ function App() {
               <Suspense fallback={<div>Loading...</div>}>
                 <Navbar />
                 <Contact />
+                <Footer />
+              </Suspense>
+            </>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Navbar />
+                <Signup />
                 <Footer />
               </Suspense>
             </>

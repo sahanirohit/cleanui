@@ -60,11 +60,18 @@ function Navbar() {
             </Link>
           </li>
         </ul>
-        <Link
-          to={"/contact"}
-          className="px-3 text-white hidden md:block rounded-md bg-contrast font-semibold cursor-pointer border border-contrast py-1">
-          Contact
-        </Link>
+        <div className="flex space-x-3">
+          <Link
+            to={"/contact"}
+            className="px-3 text-white hidden md:block rounded-md bg-contrast font-semibold cursor-pointer border border-contrast py-1">
+            Contact
+          </Link>
+          <Link
+            to={"/login"}
+            className="px-4 text-white hidden md:block rounded-md font-semibold cursor-pointer border border-white py-1">
+            Login <i className="fa-solid fa-user"></i>
+          </Link>
+        </div>
         {/* Mobile Nav */}
         <ul
           className={`md:hidden transform ${
