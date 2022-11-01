@@ -5,23 +5,21 @@ import { useEffect } from "react";
 // import { response } from "express";
 
 function Signup() {
-  const [file, setFile] = useState("");
+  const [profile, setProfile] = useState("");
   const [name, setName] = useState("");
 
-  useEffect(() => {
-    console.log(file);
-  }, [file]);
+  useEffect(() => {}, [profile]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const registered = {
-      file: file,
+      profile: profile,
       name: name,
     };
 
     axios
-      .post("http://localhost:5000/signup", registered)
+      .post("http://localhost:5000/register", registered)
       .then((response) => console.log(response.data))
       .catch((error) => {
         console.log("Hello");
@@ -33,12 +31,12 @@ function Signup() {
       <form
         onSubmit={handleSubmit}
         className="flex justify-center w-full items-center flex-col"
-        enctype="multipart/form-data">
+        encType="multipart/form-data">
         <input
           type="file"
           className=""
-          onChange={(event) => setFile(event.target.files[0])}
-          name="file"
+          onChange={(event) => setProfile(event.target.files)}
+          name="profile"
         />
         <input
           type="text"
