@@ -1,18 +1,39 @@
+const dotenv = require("dotenv").config();
 const express = require("express");
-const { default: mongoose } = require("mongoose");
-const app = express();
-const port = 5000;
-const dotenv = require("dotenv");
-const routesUrls = require("./routes/routes");
+const bodyParser = require("body-parser");
 const cors = require("cors");
+const query = require("./routes/routes");
+const connection = require("./db");
+const app = express();
+const multer = require("multer");
 
-dotenv.config();
-mongoose.connect(process.env.DATABASE_ACCESS, () =>
-  console.log("Database connected")
-);
+// connecting to database
+connection();
 
-app.use(express.json());
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "/uploads");
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + file.filename + ".jpg");
+    },
+  }),
+}).single("file_name");
+
+// app.use(express.static("../backend/upload"));
+
 app.use(cors());
-app.use("/app", routesUrls);
+app.use(express.json());
+app.use(query);
+app.use(bodyParser.json());
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
-app.listen(port, () => console.log(`Server is running at port: ${port}`));
+app.post("/signup", upload, (req, res) => {
+  res.send("uploaded");
+});
+
+const port = process.env.PORT || 5000;
+app.listen(port, console.log(`Listening on port ${port}`));
