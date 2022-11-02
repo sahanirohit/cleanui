@@ -12,35 +12,35 @@ function Signup() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const registered = {
-      profile: profile,
-      name: name,
-    };
-
+    const formData = new FormData();
+    formData.append("profile", profile);
+    formData.append("name", name);
     axios
-      .post("http://localhost:5000/register", registered)
-      .then((response) => console.log(response.data))
+      .post("http://localhost:5000/register", formData)
+      .then((res) => {
+        console.log(res.message);
+      })
       .catch((error) => {
-        console.log("Hello");
         console.log(error.message);
       });
   };
+
   return (
     <section className="w-full text-[black]">
       <form
         onSubmit={handleSubmit}
-        className="flex justify-center w-full items-center flex-col"
+        className="flex space-y-4 justify-center w-full items-center flex-col"
         encType="multipart/form-data">
         <input
           type="file"
-          className=""
-          onChange={(event) => setProfile(event.target.files)}
+          className="w-full focus:outline-none max-w-2xl bg-dark-secondary py-2"
+          onChange={(event) => setProfile(event.target.files[0])}
           name="profile"
         />
         <input
           type="text"
-          className=""
+          placeholder="Enter your name"
+          className="w-full px-4 focus:outline-none max-w-2xl bg-dark-secondary py-2"
           onChange={(event) => setName(event.target.value)}
           name="name"
         />
