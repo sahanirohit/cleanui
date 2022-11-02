@@ -3,8 +3,6 @@ require("dotenv/config");
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const multer = require("multer");
-const signUpTemplate = require("./models/signup");
 const fs = require("fs");
 const path = require("path");
 
@@ -15,31 +13,12 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// connecting to database
 connection();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./client/uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname.slice(0, -4) + "-" + Date.now() + ".jpg");
-  },
-});
-
-const upload = multer({ storage: storage }).single("profile");
-
 // post request routes
-app.post("/register", upload, (req, res, next) => {
-  const userData = new signUpTemplate({
-    profile: req.file.path,
-    name: req.body.name,
-  });
-  userData.save();
-  console.log(req.file);
-  console.log("image saved");
-});
-
-// connecting to database
+app.use(require("./routes/register"));
+app.use(require("./routes/login"));
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
