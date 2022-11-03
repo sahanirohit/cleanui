@@ -1,4 +1,5 @@
 import React, { Suspense, lazy } from "react";
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Contact from "./Components/Contact";
 import Newsletter from "./Components/Newsletter";
@@ -15,6 +16,7 @@ const Services = lazy(() => import("./Components/Services"));
 const About = lazy(() => import("./Components/About"));
 
 function App() {
+  useEffect(() => {}, []);
   return (
     <div className="App">
       <Routes>

@@ -14,6 +14,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).single("avatar");
 
+// user registration api
 router.post("/register", upload, (req, res, next) => {
   userModel.findOne({ email: req.body.email }, (err, user) => {
     if (user) {
@@ -37,5 +38,23 @@ router.post("/register", upload, (req, res, next) => {
     }
   });
 });
+
+// user login api
+// router.post("/login", (res, req) => {
+//   console.log(req.body);
+// const [email, password] = req.body;
+// console.log(email, password);
+// userModel.findOne({ email: email }, (err, user) => {
+//   if (user) {
+//     if (password === user.password) {
+//       res.send({ message: "Login successful", user: user });
+//     } else {
+//       res.send({ message: "Invalid password" });
+//     }
+//   } else {
+//     res.send({ message: "User not registered" });
+//   }
+// });
+// });
 
 module.exports = router;

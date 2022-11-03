@@ -41,15 +41,20 @@ function Navbar() {
   // login API
   const userLogin = (e) => {
     e.preventDefault();
-    const loginData = new FormData();
-    loginData.append("email", loginemail);
-    loginData.append("password", loginpassword);
+    // const loginData = new FormData();
+    // loginData.append("email", loginemail);
+    // loginData.append("password", loginpassword);
+
+    const user = {
+      email: loginemail,
+      password: loginpassword,
+    };
 
     axios
-      .post("http://localhost:5000/login", loginData)
+      .post("http://localhost:5000/login", user)
       .then((res) => {
-        console.log(res);
-        console.log("user login success");
+        console.log(res.data);
+        console.log(res.data.user);
       })
       .catch((error) => {
         console.log(error.message);
