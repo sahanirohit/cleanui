@@ -4,8 +4,12 @@ import { useEffect } from "react";
 import { memo } from "react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Navbar() {
+  const [logout, setLogout] = useState(false);
+  const [user, setUser] = useState(null);
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,38 +32,78 @@ function Navbar() {
     userData.append("password", password);
     userData.append("avatar", avatar);
 
-    axios
-      .post("http://localhost:5000/register", userData)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error.message);
+    if (fullname === "") {
+      toast.warn("Enter your full name.", {
+        position: toast.POSITION.TOP_RIGHT,
       });
+    } else if (email === "") {
+      toast.warn("Enter your email.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else if (password === "") {
+      toast.warn("Enter your password.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else if (avatar === "") {
+      toast.warn("Select your profile image.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      axios
+        .post("http://localhost:5000/register", userData)
+        .then((res) => {
+          toast.success(res.data, {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
   };
 
   // login API
   const userLogin = (e) => {
     e.preventDefault();
-    // const loginData = new FormData();
-    // loginData.append("email", loginemail);
-    // loginData.append("password", loginpassword);
 
-    const user = {
-      email: loginemail,
-      password: loginpassword,
-    };
-
-    axios
-      .post("http://localhost:5000/login", user)
-      .then((res) => {
-        console.log(res.data);
-        console.log(res.data.user);
-      })
-      .catch((error) => {
-        console.log(error.message);
-        console.log("user login failed");
+    if (loginemail === "") {
+      toast.warn("Please enter your email address!", {
+        position: toast.POSITION.TOP_RIGHT,
       });
+    } else if (loginpassword === "") {
+      toast.warn("Please enter your password!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      const user = {
+        email: loginemail,
+        password: loginpassword,
+      };
+      axios
+        .post("http://localhost:5000/login", user)
+        .then((res) => {
+          console.log(res.data);
+          // console.log(res.data.user);
+          if (res.data.message === "Login successfull") {
+            toast.success(res.data.message, {
+              position: toast.POSITION.TOP_CENTER,
+            });
+            setProfile(!profile);
+            setUser(res.data.user);
+          } else if (res.data.message === "Invalid password") {
+            toast.error(res.data.message, {
+              position: toast.POSITION.TOP_CENTER,
+            });
+          } else if (res.data.message === "User not registered") {
+            toast.info(res.data.message, {
+              position: toast.POSITION.TOP_CENTER,
+            });
+          }
+        })
+        .catch((res) => {
+          console.log(res);
+        });
+    }
   };
 
   useEffect(() => {
@@ -74,6 +118,7 @@ function Navbar() {
 
   return (
     <header className="h-20">
+      <ToastContainer />
       <nav className="lg:px-28 z-50 bg-dark-primary px-6 fixed top-0 w-full h-20 flex items-center justify-between">
         <div
           className={`flex items-center text-contrast justify-between w-full md:w-auto ${
@@ -126,18 +171,55 @@ function Navbar() {
             </Link>
           </li>
         </ul>
-        <div className="flex space-x-3">
+        <div className="flex space-x-3 relative">
           <Link
             to={"/contact"}
             className="px-3 text-white hidden md:block rounded-md bg-contrast font-semibold cursor-pointer border border-contrast py-1">
             Contact
           </Link>
-          <Link
-            to={""}
-            onClick={() => setProfile(!profile)}
-            className="px-4 text-white hidden md:block rounded-md font-semibold cursor-pointer border border-white py-1">
-            <i className="fa-solid fa-user"></i>
-          </Link>
+
+          {user ? (
+            <div className="">
+              <Link
+                to={""}
+                onClick={() => setLogout(!logout)}
+                className="px-4 text-white hidden md:flex items-center justify-center space-x-2 rounded-md font-semibold cursor-pointer py-2">
+                <i className="fa-solid fa-user"></i>
+                <i className="fa-solid fa-caret-down"></i>
+              </Link>
+              <div
+                className={`absolute right-0 divide-y w-full rounded-md group-hover:block dropdown top-10 bg-dark-secondary px-4 py-4 ${
+                  logout ? "" : "hidden"
+                }`}>
+                <div className="relative flex space-x-4 pb-4">
+                  <img
+                    src={user.avatar.slice(3)}
+                    alt=""
+                    className="w-8 h-8 rounded-full bg-white"
+                  />
+                  <div className="text-sm">
+                    <h2 className="font-bold">{user.fullname}</h2>
+                    <h2 className="text-contrast">View Profile</h2>
+                  </div>
+                </div>
+                <div className="flex items-center pt-4">
+                  <i className="fa-solid fa-sign-out"></i>
+                  <button onClick={() => setUser(null)} className="w-full">
+                    Logout
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <Link
+              to={""}
+              onClick={() => setProfile(!profile)}
+              className="px-4 text-white hidden md:flex items-center justify-center space-x-2 rounded-md font-semibold cursor-pointer py-1">
+              <i className="fa-solid fa-user"></i>
+              <span className="">Login</span>
+              {/* <i className="fa-solid fa-caret-down"></i> */}
+            </Link>
+          )}
         </div>
         {/* Mobile Nav */}
         <ul

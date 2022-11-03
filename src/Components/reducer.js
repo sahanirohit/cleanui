@@ -1,19 +1,18 @@
 export const initialState = {
-  basket: [],
+  basket: [{ id: 1 }],
   user: null,
-  login: false,
-  register: false,
 };
 
 function reducer(state, action) {
   console.log(action);
   switch (action.type) {
-    case "handleLoginForm":
-      initialState.login(!false);
-      break;
-
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.user,
+      };
     default:
-      break;
+      return state;
   }
 }
 
