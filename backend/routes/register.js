@@ -20,7 +20,6 @@ router.post("/register", upload, (req, res, next) => {
     if (user) {
       console.log("User already existed.");
       res.send({ message: "User already existed." });
-      return true;
     } else {
       const { fullname, email, password, avatar } = req.body;
       if (fullname === "" || email === "" || password === "" || avatar === "") {
@@ -30,7 +29,7 @@ router.post("/register", upload, (req, res, next) => {
           fullname: req.body.fullname,
           email: req.body.email,
           password: req.body.password,
-          avatar: req.file.path,
+          avatar: req.file.filename,
         });
         userData.save((err) => {
           if (err) {
@@ -43,23 +42,5 @@ router.post("/register", upload, (req, res, next) => {
     }
   });
 });
-
-// user login api
-// router.post("/login", (res, req) => {
-//   console.log(req.body);
-// const [email, password] = req.body;
-// console.log(email, password);
-// userModel.findOne({ email: email }, (err, user) => {
-//   if (user) {
-//     if (password === user.password) {
-//       res.send({ message: "Login successful", user: user });
-//     } else {
-//       res.send({ message: "Invalid password" });
-//     }
-//   } else {
-//     res.send({ message: "User not registered" });
-//   }
-// });
-// });
 
 module.exports = router;

@@ -52,16 +52,19 @@ function Navbar() {
       axios
         .post("http://localhost:5000/register", userData)
         .then((res) => {
-          toast.success(res.data, {
+          toast.success(res.data.message, {
             position: toast.POSITION.TOP_RIGHT,
           });
+          handleLogin();
         })
         .catch((error) => {
           console.log(error.message);
         });
     }
   };
-
+  if (user !== null) {
+    var name = user.fullname.split(" ");
+  }
   // login API
   const userLogin = (e) => {
     e.preventDefault();
@@ -84,7 +87,12 @@ function Navbar() {
         .then((res) => {
           console.log(res.data);
           // console.log(res.data.user);
-          if (res.data.message === "Login successfull") {
+          if (res.data.message === "User already existed.") {
+            toast.info(res.data.message, {
+              position: toast.POSITION.TOP_CENTER,
+            });
+            return true;
+          } else if (res.data.message === "Login successfull") {
             toast.success(res.data.message, {
               position: toast.POSITION.TOP_CENTER,
             });
@@ -191,18 +199,20 @@ function Navbar() {
                 className={`absolute right-0 divide-y w-full rounded-md group-hover:block dropdown top-10 bg-dark-secondary px-4 py-4 ${
                   logout ? "" : "hidden"
                 }`}>
-                <div className="relative flex space-x-4 pb-4">
-                  <img
-                    src={user.avatar.slice(3)}
-                    alt=""
-                    className="w-8 h-8 rounded-full bg-white"
-                  />
+                <div className="relative flex  space-x-4 pb-4">
+                  <div className="w-8 h-8 shrink-0 rounded-full">
+                    <img
+                      src={`uploads/${user.avatar}`}
+                      alt=""
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
                   <div className="text-sm">
-                    <h2 className="font-bold">{user.fullname}</h2>
+                    <h2 className="font-bold">{name[0]}</h2>
                     <h2 className="text-contrast">View Profile</h2>
                   </div>
                 </div>
-                <div className="flex items-center pt-4">
+                <div className="flex items-center pt-3">
                   <i className="fa-solid fa-sign-out"></i>
                   <button onClick={() => setUser(null)} className="w-full">
                     Logout
