@@ -60,7 +60,7 @@ function Testimonials() {
           </div>
           <div className=" md:col-span-2">
             <div className="grid grid-cols-2 gap-8 px-4">
-              <input
+              {/* <input
                 type="text"
                 className="w-full py-3 bg-transparent focus:border-active-accent border-2 border-white/20 rounded-xl focus:outline-none px-4"
                 placeholder="First Name*"
@@ -74,12 +74,12 @@ function Testimonials() {
                 type="file"
                 className="w-full py-3 bg-transparent col-span-2 focus:border-active-accent border-2 border-white/20 rounded-xl focus:outline-none px-4"
                 placeholder="Select your profile image*"
-              />
+              /> */}
               <textarea
                 name="message"
                 id="message"
                 cols="30"
-                rows="6"
+                rows="8"
                 className="w-full py-3 bg-transparent focus:border-active-accent border-2 border-white/20 rounded-xl focus:outline-none px-4 col-span-2"
                 placeholder="Your review*"></textarea>
               <div className=" col-span-2 sm:col-span-1">

@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Navbar() {
   const [logout, setLogout] = useState(false);
+  // manage user login data
   const [user, setUser] = useState(null);
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -18,6 +19,26 @@ function Navbar() {
   const [login, setLogin] = useState(false);
   const [open, setOpen] = useState(false);
   const url = useLocation();
+  // const navigate = useNavigate();
+
+  axios.defaults.withCredentials = true;
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/auth").then((res) => {
+      if (res.data.loggedIn === true) {
+        setUser(res.data.user);
+        console.log(res.data.user);
+      }
+    });
+  }, [profile]);
+
+  const userLogout = () => {
+    axios.get("http://localhost:5000/logout").then((res) => {
+      console.log("Logout");
+      // navigate("/");
+    });
+    setUser(null);
+  };
 
   // login
   const [loginemail, setLoginEmail] = useState("");
@@ -97,7 +118,6 @@ function Navbar() {
               position: toast.POSITION.TOP_CENTER,
             });
             setProfile(!profile);
-            setUser(res.data.user);
           } else if (res.data.message === "Invalid password") {
             toast.error(res.data.message, {
               position: toast.POSITION.TOP_CENTER,
@@ -214,7 +234,7 @@ function Navbar() {
                 </div>
                 <div className="flex items-center pt-3">
                   <i className="fa-solid fa-sign-out"></i>
-                  <button onClick={() => setUser(null)} className="w-full">
+                  <button onClick={userLogout} className="w-full">
                     Logout
                   </button>
                 </div>
@@ -230,6 +250,14 @@ function Navbar() {
               {/* <i className="fa-solid fa-caret-down"></i> */}
             </Link>
           )}
+          {/* <Link
+            to={""}
+            onClick={() => setProfile(!profile)}
+            className="px-4 text-white hidden md:flex items-center justify-center space-x-2 rounded-md font-semibold cursor-pointer py-1">
+            <i className="fa-solid fa-user"></i>
+            <span className="">Login</span>
+            {/* <i className="fa-solid fa-caret-down"></i>
+          </Link> */}
         </div>
         {/* Mobile Nav */}
         <ul
@@ -295,7 +323,7 @@ function Navbar() {
           profile ? "fixed" : "hidden"
         }`}>
         <div className="bg-white text-dark-primary font-[poppins] p-8 relative">
-          <div className={`${login ? "hidden" : ""}`}>
+          <div className={`${login ? "" : "hidden"}`}>
             <h2 className="text-2xl text-center pb-4">SIGN UP TO CLEAN UI</h2>
             <div className="">
               <form
@@ -354,7 +382,7 @@ function Navbar() {
               </form>
             </div>
           </div>
-          <div className={`${login ? "" : "hidden"}`}>
+          <div className={`${login ? "hidden" : ""}`}>
             <h2 className="text-2xl text-center pb-4">LOG IN TO CLEAN UI</h2>
             <div className="">
               <form
