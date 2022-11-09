@@ -295,7 +295,7 @@ function Navbar() {
           profile ? "fixed" : "hidden"
         }`}>
         <div className="bg-white text-dark-primary font-[poppins] p-8 relative">
-          <div className={`${login ? "hidden" : ""}`}>
+          <div className={`${login ? "" : "hidden"}`}>
             <h2 className="text-2xl text-center pb-4">SIGN UP TO CLEAN UI</h2>
             <div className="">
               <form
@@ -354,7 +354,7 @@ function Navbar() {
               </form>
             </div>
           </div>
-          <div className={`${login ? "" : "hidden"}`}>
+          <div className={`${login ? "hidden" : ""}`}>
             <h2 className="text-2xl text-center pb-4">LOG IN TO CLEAN UI</h2>
             <div className="">
               <form

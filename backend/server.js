@@ -5,7 +5,9 @@ const app = express();
 const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
+// const controller = require("./controllers/controller");
 
+// app.use(controller);
 const connection = require("./db");
 const bodyParser = require("body-parser");
 
@@ -18,8 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 connection();
 
 // post request routes
-app.use(require("./routes/register"));
-app.use(require("./routes/login"));
+app.use(require("./routes/routes"));
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
