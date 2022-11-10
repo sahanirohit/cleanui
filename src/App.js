@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Contact from "./Components/Contact";
 import Newsletter from "./Components/Newsletter";
 import Testimonials from "./Components/Testimonials";
@@ -16,7 +16,7 @@ const About = lazy(() => import("./Components/About"));
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
       <Routes>
         <Route
           path="/"
@@ -98,7 +98,7 @@ function App() {
           }
         />
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
 

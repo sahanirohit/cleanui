@@ -27,7 +27,6 @@ function Navbar() {
     axios.get("http://localhost:5000/auth").then((res) => {
       if (res.data.loggedIn === true) {
         setUser(res.data.user);
-        console.log(res.data.user);
       }
     });
   }, [profile]);

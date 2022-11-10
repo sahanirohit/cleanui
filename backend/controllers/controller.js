@@ -1,4 +1,5 @@
 const userModel = require("../models/signup");
+const clientReview = require("../models/review");
 
 // login controller
 exports.login = (req, res) => {
@@ -18,7 +19,7 @@ exports.login = (req, res) => {
   });
 };
 
-// auth
+// login auth controller
 exports.auth = (req, res) => {
   if (req.session.user) {
     res.send({ loggedIn: true, user: req.session.user });
@@ -27,6 +28,7 @@ exports.auth = (req, res) => {
   }
 };
 
+// logout controller
 exports.logout = (req, res) => {
   req.session.destroy();
   res.send("Logout");
@@ -58,6 +60,20 @@ exports.register = (req, res) => {
           }
         });
       }
+    }
+  });
+};
+
+// clients review controller
+exports.review = (req, res) => {
+  const clientData = new clientReview({
+    message: req.body.message,
+  });
+  clientData.save((err) => {
+    if (err) {
+      res.send(err.message);
+    } else {
+      res.send({ message: "Review posted succssfully" });
     }
   });
 };

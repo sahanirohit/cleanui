@@ -26,4 +26,7 @@ router.get("/auth", controller.auth);
 // logout
 router.get("/logout", controller.logout);
 
+// review api
+router.post("/review", controller.review);
+
 module.exports = router;
