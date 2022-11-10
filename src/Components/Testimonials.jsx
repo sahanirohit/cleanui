@@ -19,7 +19,7 @@ function Testimonials() {
           </h1>
           <div className="relative before:absolute before:w-16 before:h-[2px] before:rounded-full before:bg-active-accent flex items-center justify-center before:bottom-0"></div>
         </div>
-        <div className="bg-dark-secondary grid md:grid-cols-3 gap-y-8 md:gap-y-0 px-2 py-8 rounded-xl w-full">
+        <div className="bg-dark-secondary gap-8 grid md:grid-cols-3 gap-y-8 md:gap-y-0 px-2 py-8 rounded-xl w-full">
           <div className="bg-dark-primary rounded-xl h-96 md:h-auto text-center items-center md:items-start md:text-left p-4 flex flex-col justify-between">
             <div className="">
               <h2 className="lg:text-4xl duration-500 text-3xl font-bold">
@@ -59,7 +59,7 @@ function Testimonials() {
             </div>
           </div>
           <div className=" md:col-span-2">
-            <div className="grid grid-cols-2 gap-8 px-4">
+            <div className="grid grid-cols-2 gap-8">
               {/* <input
                 type="text"
                 className="w-full py-3 bg-transparent focus:border-active-accent border-2 border-white/20 rounded-xl focus:outline-none px-4"
@@ -79,7 +79,7 @@ function Testimonials() {
                 name="message"
                 id="message"
                 cols="30"
-                rows="8"
+                rows="10"
                 className="w-full py-3 bg-transparent focus:border-active-accent border-2 border-white/20 rounded-xl focus:outline-none px-4 col-span-2"
                 placeholder="Your review*"></textarea>
               <div className=" col-span-2 sm:col-span-1">
