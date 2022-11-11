@@ -68,12 +68,26 @@ exports.register = (req, res) => {
 exports.review = (req, res) => {
   const clientData = new clientReview({
     message: req.body.message,
+    name: req.body.name,
+    avatar: req.body.avatar,
   });
+  console.log(req.body);
   clientData.save((err) => {
     if (err) {
       res.send(err.message);
     } else {
       res.send({ message: "Review posted succssfully" });
+    }
+  });
+};
+
+// get client review
+exports.reviews = (req, res) => {
+  clientReview.find((err, val) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(val);
     }
   });
 };

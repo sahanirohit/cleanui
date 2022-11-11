@@ -29,4 +29,7 @@ router.get("/logout", controller.logout);
 // review api
 router.post("/review", controller.review);
 
+// get review data
+router.get("/reviews", controller.reviews);
+
 module.exports = router;

@@ -13,11 +13,33 @@ import {
 function Testimonials() {
   const [user, setUser] = useState(null);
   const [review, setReview] = useState("");
+  const [allData, setAllData] = useState([]);
+  // console.log(allData);
+  useEffect(() => {
+    // fetch auth user details
+    axios.get("http://localhost:5000/auth").then((res) => {
+      if (res.data.loggedIn === true) {
+        setUser(res.data.user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    // fetch all review data
+    axios.get("http://localhost:5000/reviews").then((res) => {
+      setAllData(res.data);
+    });
+  }, []);
   // console.log(review);
   const handleClientReview = (e) => {
     e.preventDefault();
+    const reviewData = {
+      message: review,
+      name: user.fullname,
+      avatar: user.avatar,
+    };
     axios
-      .post("http://localhost:5000/review", review)
+      .post("http://localhost:5000/review", reviewData)
       .then((res) => {
         console.log(res);
       })
@@ -26,15 +48,6 @@ function Testimonials() {
       });
   };
 
-  useEffect(() => {
-    axios.get("http://localhost:5000/auth").then((res) => {
-      if (res.data.loggedIn === true) {
-        setUser(res.data.user);
-      } else {
-        setUser(null);
-      }
-    });
-  }, []);
   return (
     <section className="lg:px-28 px-6 py-16">
       {/* Title */}
@@ -113,34 +126,33 @@ function Testimonials() {
         )}
       </div>
       <div className="py-16 bg-dark-secondary px-4 w-full rounded-xl grid grid-cols-2 gap-8">
-        <div className="bg-dark-primary rounded-xl">
-          <div className="p-8 flex flex-col items-center justify-center">
-            <div className="w-24 h-24 rounded-full">
-              <img
-                src={require("../assets/images/me.jpg")}
-                alt=""
-                className="w-full h-full rounded-full object-cover"
-              />
-            </div>
-            <h2 className="text-2xl font-bold py-6">David Lee</h2>
-            <div className="w-full text-center flex items-center justify-center flex-col space-y-4">
-              <FaQuoteLeft className="text-6xl" />
-              <p className="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-                accusamus numquam fugiat! Deleniti quidem fuga dignissimos
-                aliquid enim mollitia qui esse hic dolorum nulla officiis
-                corporis accusamus, alias excepturi reprehenderit.
-              </p>
-              <div className="flex space-x-2">
-                <FaStar className="text-[gold]" />
-                <FaStar className="text-[gold]" />
-                <FaStar className="text-[gold]" />
-                <FaStar className="text-[gold]" />
-                <FaStar className="text-[gold]" />
+        {allData.map((item, index) => {
+          return (
+            <div key={index} className="bg-dark-primary rounded-xl">
+              <div className="p-8 flex flex-col items-center justify-center">
+                <div className="w-24 h-24 rounded-full">
+                  <img
+                    src={`uploads/${item.avatar}`}
+                    alt=""
+                    className="w-full h-full rounded-full object-cover"
+                  />
+                </div>
+                <h2 className="text-2xl font-bold py-6">{item.name}</h2>
+                <div className="w-full text-center flex items-center justify-center flex-col space-y-4">
+                  <FaQuoteLeft className="text-6xl" />
+                  <p className="">{item.message}</p>
+                  <div className="flex space-x-2">
+                    <FaStar className="text-[gold]" />
+                    <FaStar className="text-[gold]" />
+                    <FaStar className="text-[gold]" />
+                    <FaStar className="text-[gold]" />
+                    <FaStar className="text-[gold]" />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </section>
   );
