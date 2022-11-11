@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   FaFacebook,
   FaInstagram,
@@ -13,24 +14,42 @@ import {
 function Testimonials() {
   const [user, setUser] = useState(null);
   const [review, setReview] = useState("");
+  const [reviewPosted, setReviewPosted] = useState(false);
   const [allData, setAllData] = useState([]);
-  // console.log(allData);
+
   useEffect(() => {
     // fetch auth user details
-    axios.get("http://localhost:5000/auth").then((res) => {
-      if (res.data.loggedIn === true) {
-        setUser(res.data.user);
-      } else {
-        setUser(null);
-      }
-    });
+    axios.get("http://localhost:5000/auth").then(
+      (res) => {
+        if (res.data.loggedIn === true) {
+          setUser(res.data.user);
+        } else {
+          setUser(null);
+        }
+      },
+      [reviewPosted]
+    );
 
     // fetch all review data
     axios.get("http://localhost:5000/reviews").then((res) => {
       setAllData(res.data);
     });
   }, []);
-  // console.log(review);
+
+  useEffect(() => {
+    if (user) {
+      const nameValue = [];
+      allData.map((item) => {
+        return nameValue.push(item.name);
+      });
+
+      if (nameValue.includes(user.fullname)) {
+        setReviewPosted(true);
+      }
+    }
+  });
+  // console.log(reviewPosted);
+  // post review
   const handleClientReview = (e) => {
     e.preventDefault();
     const reviewData = {
@@ -42,6 +61,9 @@ function Testimonials() {
       .post("http://localhost:5000/review", reviewData)
       .then((res) => {
         console.log(res);
+        toast.success(res.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -50,6 +72,7 @@ function Testimonials() {
 
   return (
     <section className="lg:px-28 px-6 py-16">
+      <ToastContainer />
       {/* Title */}
       <div className="text-center pb-16 flex items-center flex-col space-y-16">
         <div className="max-w-xl space-y-4">
@@ -58,7 +81,7 @@ function Testimonials() {
           </h1>
           <div className="relative before:absolute before:w-16 before:h-[2px] before:rounded-full before:bg-active-accent flex items-center justify-center before:bottom-0"></div>
         </div>
-        {user ? (
+        {user && reviewPosted !== true ? (
           <div className="bg-dark-secondary gap-8 grid md:grid-cols-3 gap-y-8 md:gap-y-0 px-2 py-8 rounded-xl w-full">
             <div className="bg-dark-primary rounded-xl h-96 md:h-auto text-center items-center md:items-start md:text-left p-4 flex flex-col justify-between">
               <div className="">
@@ -125,7 +148,7 @@ function Testimonials() {
           ""
         )}
       </div>
-      <div className="py-16 bg-dark-secondary px-4 w-full rounded-xl grid grid-cols-2 gap-8">
+      <div className="py-16 bg-dark-secondary px-4 w-full rounded-xl grid grid-cols-3 gap-8">
         {allData.map((item, index) => {
           return (
             <div key={index} className="bg-dark-primary rounded-xl">
@@ -139,7 +162,7 @@ function Testimonials() {
                 </div>
                 <h2 className="text-2xl font-bold py-6">{item.name}</h2>
                 <div className="w-full text-center flex items-center justify-center flex-col space-y-4">
-                  <FaQuoteLeft className="text-6xl" />
+                  <FaQuoteLeft className="text-6xl text-[#e2e2e2]" />
                   <p className="">{item.message}</p>
                   <div className="flex space-x-2">
                     <FaStar className="text-[gold]" />

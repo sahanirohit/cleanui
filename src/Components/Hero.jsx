@@ -35,7 +35,12 @@ function Hero() {
               My Portfolio
             </button>
             <button className="px-6 py-3 duration-300 hover:bg-active-accent hover:border-active-accent bg-dark-primary border-2 font-[Montserrat] font-bold rounded-xl border-white text-white text-xl">
-              Contact me
+              <a
+                href="http://wa.me/918957912038"
+                target="_blank"
+                rel="noopener noreferrer">
+                Contact me
+              </a>
             </button>
           </div>
           <div className="flex space-x-4 text-2xl py-4">

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [logout, setLogout] = useState(false);
@@ -19,7 +20,7 @@ function Navbar() {
   const [login, setLogin] = useState(false);
   const [open, setOpen] = useState(false);
   const url = useLocation();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
 
@@ -34,7 +35,7 @@ function Navbar() {
   const userLogout = () => {
     axios.get("http://localhost:5000/logout").then((res) => {
       console.log("Logout");
-      // navigate("/");
+      navigate("/");
     });
     setUser(null);
   };
