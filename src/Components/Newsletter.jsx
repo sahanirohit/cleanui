@@ -75,13 +75,9 @@ function Newsletter() {
         </div>
       </div> */}
       <div className="grid lg:grid-cols-2 gap-8 ">
-        <div className="">
-          <img
-            src={newsletterImage}
-            alt=""
-            className="w-full h-80 object-contain"
-          />
-        </div>
+        {/* <div className="flex self-start bg-active-accent w-full"> */}
+        <img src={newsletterImage} className="w-full h-80 object-contain" />
+        {/* </div> */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left space-y-6 justify-center">
           <div className="">
             <h2 className="uppercase text-xl font-semibold leading-none">
@@ -95,7 +91,7 @@ function Newsletter() {
             Get weekly updates on the newest design stories, case studies and
             tips right in your mailbox.
           </p>
-          <div className="w-full flex">
+          <div className="w-full sm:px-0 px-6 flex">
             <input
               type="email"
               placeholder="Email Address"

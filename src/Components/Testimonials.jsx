@@ -48,6 +48,8 @@ function Testimonials() {
       }
     }
   });
+
+  console.log("Testimonials Page");
   // console.log(reviewPosted);
   // post review
   const handleClientReview = (e) => {
@@ -148,7 +150,7 @@ function Testimonials() {
           ""
         )}
       </div>
-      <div className="py-16 bg-dark-secondary px-4 w-full rounded-xl grid grid-cols-3 gap-8">
+      <div className="py-16 bg-dark-secondary px-4 w-full rounded-xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {allData.map((item, index) => {
           return (
             <div key={index} className="bg-dark-primary rounded-xl">

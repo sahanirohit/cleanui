@@ -93,8 +93,19 @@ exports.reviews = (req, res) => {
   });
 };
 
+// get project details
+exports.projectDetails = (req, res) => {
+  projectModel.find((err, val) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(val);
+    }
+  });
+};
+
 // upload project details
-exports.projects = (req, res) => {
+exports.projects = (req, res, next) => {
   // console.log(req.body);
   // console.log(req.file);
   const projectData = new projectModel({
@@ -104,9 +115,10 @@ exports.projects = (req, res) => {
   });
   projectData.save((err) => {
     if (err) {
-      res.send(err);
+      res.send({ message: err.message });
     } else {
       res.send({ message: "Project uploaded successfully." });
+      next();
     }
   });
 };

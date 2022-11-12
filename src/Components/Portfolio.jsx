@@ -1,40 +1,8 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const demosImage = [
-  {
-    img: require("../assets/images/Clean UI.jpg"),
-    title: "Minimal Agency",
-    url: "https://rohitsahani.in/",
-  },
-  {
-    img: require("../assets/images/Pacifico Clone.jpg"),
-    title: "Pacifico Clone",
-    url: "https://rohitsahani.in/demo/pacifico-clone/",
-  },
-  {
-    img: require("../assets/images/Clean UI.jpg"),
-    title: "Minimal Agency",
-    url: "https://rohitsahani.in/",
-  },
-  {
-    img: require("../assets/images/Clean UI.jpg"),
-    title: "Minimal Agency",
-    url: "https://rohitsahani.in/",
-  },
-  {
-    img: require("../assets/images/Clean UI.jpg"),
-    title: "Minimal Agency",
-    url: "https://rohitsahani.in/",
-  },
-  {
-    img: require("../assets/images/Clean UI.jpg"),
-    title: "Minimal Agency",
-    url: "https://rohitsahani.in/",
-  },
-];
 
 function Portfolio() {
   const url = useLocation();
@@ -42,8 +10,14 @@ function Portfolio() {
   const [projectURL, setProjectURL] = useState("");
   const [image, setImage] = useState("");
   const [user, setUser] = useState(null);
+  const [projectData, setProjectData] = useState([]);
 
   useEffect(() => {
+    // get project data
+    axios.get("http://localhost:5000/projectDetails").then((res) => {
+      setProjectData(res.data);
+    });
+
     // fetch auth user details
     axios.get("http://localhost:5000/auth").then((res) => {
       if (res.data.loggedIn === true) {
@@ -54,6 +28,7 @@ function Portfolio() {
     });
   }, []);
 
+  // check isUser an Admin or not
   const isAdmin = () => {
     if (user) {
       if (user.email === "rohitjobeis@gmail.com") {
@@ -64,24 +39,43 @@ function Portfolio() {
     }
   };
 
+  // project data upload function
   const projectUpload = (e) => {
     e.preventDefault();
-    const projectDetails = new FormData();
-    projectDetails.append("project", project);
-    projectDetails.append("projectURL", projectURL);
-    projectDetails.append("image", image);
-    axios
-      .post("http://localhost:5000/project", projectDetails)
-      .then((res) => {
-        console.log(res);
-        toast.success(res.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    if (project === "") {
+      toast.info("What's your project name?", {
+        position: toast.POSITION.TOP_CENTER,
       });
+    } else if (projectURL === "") {
+      toast.info("What's your project URL?", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else if (image === "") {
+      toast.info("Upload your project image.", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else {
+      const projectDetails = new FormData();
+      projectDetails.append("project", project);
+      projectDetails.append("projectURL", projectURL);
+      projectDetails.append("image", image);
+      axios
+        .post("http://localhost:5000/project", projectDetails)
+        .then((res) => {
+          console.log(res);
+          toast.success(res.data.message, {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err.message, {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        });
+    }
   };
+
   return (
     <section className="lg:px-28 px-6 py-16">
       <ToastContainer />
@@ -99,9 +93,8 @@ function Portfolio() {
           <div className=""></div>
           <div className="">
             <form
-              onSubmit={projectUpload}
               encType="multipart/form-data"
-              method="post"
+              onSubmit={projectUpload}
               className="flex flex-col space-y-3">
               <div className="space-y-2">
                 <label htmlFor="project">What's your project name?</label>
@@ -109,6 +102,7 @@ function Portfolio() {
                   type="text"
                   onChange={(e) => setProject(e.target.value)}
                   name="project"
+                  value={project}
                   className="w-full py-3 px-4 bg-dark-secondary text-white focus:outline-none"
                   placeholder="Project Name"
                 />
@@ -119,6 +113,7 @@ function Portfolio() {
                   type="text"
                   onChange={(e) => setProjectURL(e.target.value)}
                   name="projectURL"
+                  value={projectURL}
                   className="w-full py-3 px-4 bg-dark-secondary text-white focus:outline-none"
                   placeholder="URL"
                 />
@@ -144,12 +139,12 @@ function Portfolio() {
         ""
       )}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {demosImage.map((item, index) => {
+        {projectData.map((item, index) => {
           return (
             <div className="" key={index}>
               <div className="border-2 group overflow-hidden relative cursor-pointer">
                 <img
-                  src={item.img}
+                  src={`projects/${item.image}`}
                   alt=""
                   loading="lazy"
                   className="w-full h-full object-cover"
@@ -157,7 +152,7 @@ function Portfolio() {
                 <div className="absolute transform translate-y-full duration-300 group-hover:translate-y-0 group-hover:bg-dark-primary/80 inset-0 flex items-center justify-center">
                   <button className="px-8 py-2 bg-active-accent text-white font-bold">
                     <a
-                      href={item.url}
+                      href={item.projectURL}
                       target="_blank"
                       rel="noopener noreferrer">
                       Preview
@@ -168,7 +163,7 @@ function Portfolio() {
 
               <div className="py-6 text-center">
                 <h1 className="text-2xl font-bold text-secondary-accent">
-                  {item.title}
+                  {item.project}
                 </h1>
               </div>
             </div>
