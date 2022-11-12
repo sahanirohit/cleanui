@@ -4,9 +4,9 @@ import React, { createContext, useContext, useReducer } from "react";
 export const StateContext = createContext();
 
 // Build a Provider
-export const StateProvider = ({ reducer, initialState, child }) => {
+export const StateProvider = ({ reducer, initialState, children }) => {
   <StateContext.Provider value={useReducer(reducer, initialState)}>
-    {child}
+    {children}
   </StateContext.Provider>;
 };
 

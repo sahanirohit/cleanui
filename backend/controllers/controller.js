@@ -1,5 +1,6 @@
 const userModel = require("../models/signup");
 const clientReview = require("../models/review");
+const projectModel = require("../models/projects");
 
 // login controller
 exports.login = (req, res) => {
@@ -71,7 +72,7 @@ exports.review = (req, res) => {
     name: req.body.name,
     avatar: req.body.avatar,
   });
-  console.log(req.body);
+  // console.log(req.body);
   clientData.save((err) => {
     if (err) {
       res.send(err.message);
@@ -88,6 +89,24 @@ exports.reviews = (req, res) => {
       console.log(err);
     } else {
       res.send(val);
+    }
+  });
+};
+
+// upload project details
+exports.projects = (req, res) => {
+  // console.log(req.body);
+  // console.log(req.file);
+  const projectData = new projectModel({
+    project: req.body.project,
+    projectURL: req.body.projectURL,
+    image: req.file.filename,
+  });
+  projectData.save((err) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send({ message: "Project uploaded successfully." });
     }
   });
 };

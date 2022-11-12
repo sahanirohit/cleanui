@@ -1,21 +1,10 @@
-const multer = require("multer");
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/controller");
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "../public/uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage }).single("avatar");
+const middleware = require("../middleware/middleware");
 
 // user registration api
-router.post("/register", upload, controller.register);
+router.post("/register", middleware.userProfile, controller.register);
 
 // user login api
 router.post("/login", controller.login);
@@ -31,5 +20,8 @@ router.post("/review", controller.review);
 
 // get review data
 router.get("/reviews", controller.reviews);
+
+// post projet data
+router.post("/project", middleware.projectImage, controller.projects);
 
 module.exports = router;
