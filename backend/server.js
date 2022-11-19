@@ -16,7 +16,7 @@ app.use("/images", express.static("public/uploads"));
 
 app.use(
   cors({
-    origin: ["https://rohitsahani.in/"],
+    origin: ["https://www.rohitsahani.in/"],
     methods: ["GET", "POST"],
     credentials: true,
   })
