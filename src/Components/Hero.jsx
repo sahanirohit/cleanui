@@ -1,6 +1,6 @@
 import React from "react";
 import { memo } from "react";
-import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Typed from "react-typed";
 import heroImage from "../assets/images/heroImage.jpg";
@@ -51,7 +51,12 @@ function Hero() {
           </div>
           <div className="flex space-x-4 text-2xl py-4">
             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
-              <FaFacebook className="text-[#3b5998] cursor-pointer duration-300 text-3xl" />
+              <a
+                href="http://wa.me/918957912038"
+                target="_blank"
+                rel="noopener noreferrer">
+                <FaWhatsapp className="text-[#3fdb3a] cursor-pointer duration-300 text-3xl" />
+              </a>
             </div>
             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
               <a

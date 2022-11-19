@@ -5,7 +5,7 @@ import newsletterImage from "../assets/images/newsletter.jpg";
 
 function Newsletter() {
   return (
-    <section className=" bg-dark-secondary lg:px-28 py-8 relative">
+    <section className=" bg-dark-secondary lg:px-28 py-8 px-6 relative">
       {/* <div className="absolute hidden sm:flex space-x-4 bottom-36 left-4 md:left-16 bottom">
         <div className="flex flex-col space-y-4">
           <div className="w-[8px] h-[8px] bg-white rounded-full"></div>
@@ -76,7 +76,10 @@ function Newsletter() {
       </div> */}
       <div className="grid lg:grid-cols-2 gap-8 ">
         {/* <div className="flex self-start bg-active-accent w-full"> */}
-        <img src={newsletterImage} className="w-full h-80 object-contain" />
+        <img
+          src={newsletterImage}
+          className="w-full h-full sm:h-80 object-contain"
+        />
         {/* </div> */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left space-y-6 justify-center">
           <div className="">

@@ -13,10 +13,10 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 
 app.use("/images", express.static("public/uploads"));
-app.use(cors());
+
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://rohitsahani.in/"],
     methods: ["GET", "POST"],
     credentials: true,
   })

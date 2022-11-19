@@ -71,7 +71,7 @@ function Navbar() {
       });
     } else {
       axios
-        .post("http://localhost:5000/register", userData)
+        .post("https://cleanui.herokuapp.com/register", userData)
         .then((res) => {
           toast.success(res.data.message, {
             position: toast.POSITION.TOP_RIGHT,
@@ -104,7 +104,7 @@ function Navbar() {
         password: loginpassword,
       };
       axios
-        .post("http://localhost:5000/login", user)
+        .post("https://cleanui.herokuapp.com/login", user)
         .then((res) => {
           console.log(res.data);
           // console.log(res.data.user);
