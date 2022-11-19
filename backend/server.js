@@ -5,6 +5,7 @@ const app = express();
 const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
+const cors = require("cors");
 
 // app.use(controller);
 const connection = require("./db");
@@ -12,6 +13,7 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 
 app.use("/images", express.static("public/uploads"));
+app.use(cors());
 app.use(
   cors({
     origin: ["http://localhost:3000"],
@@ -19,15 +21,6 @@ app.use(
     credentials: true,
   })
 );
-
-app.use(function (request, response, next) {
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
