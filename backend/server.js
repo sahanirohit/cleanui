@@ -5,7 +5,6 @@ const app = express();
 const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
-const cors = require("cors");
 
 // app.use(controller);
 const connection = require("./db");
@@ -14,13 +13,7 @@ const session = require("express-session");
 
 app.use("/images", express.static("public/uploads"));
 
-app.use(
-  cors({
-    origin: ["https://www.rohitsahani.in/"],
-    methods: ["GET", "POST"],
-    credentials: true,
-  })
-);
+app.use(cors({ origin: "*", allowedHeaders: "*", credentials: true }));
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));

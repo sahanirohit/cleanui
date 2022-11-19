@@ -12,14 +12,20 @@ function Portfolio() {
   const [user, setUser] = useState(null);
   const [projectData, setProjectData] = useState([]);
 
+  var config = {
+    headers: { "Access-Control-Allow-Origin": "*" },
+  };
+
   useEffect(() => {
     // get project data
-    axios.get("https://cleanui.herokuapp.com/projectDetails").then((res) => {
-      setProjectData(res.data);
-    });
+    axios
+      .get("https://cleanui.herokuapp.com/projectDetails", config)
+      .then((res) => {
+        setProjectData(res.data);
+      });
 
     // fetch auth user details
-    axios.get("https://cleanui.herokuapp.com/auth").then((res) => {
+    axios.get("https://cleanui.herokuapp.com/auth", config).then((res) => {
       if (res.data.loggedIn === true) {
         setUser(res.data.user);
       } else {
@@ -60,7 +66,7 @@ function Portfolio() {
       projectDetails.append("projectURL", projectURL);
       projectDetails.append("image", image);
       axios
-        .post("https://cleanui.herokuapp.com/project", projectDetails)
+        .post("https://cleanui.herokuapp.com/project", projectDetails, config)
         .then((res) => {
           console.log(res);
           toast.success(res.data.message, {

@@ -17,9 +17,13 @@ function Testimonials() {
   const [reviewPosted, setReviewPosted] = useState(false);
   const [allData, setAllData] = useState([]);
 
+  var config = {
+    headers: { "Access-Control-Allow-Origin": "*" },
+  };
+
   useEffect(() => {
     // fetch auth user details
-    axios.get("https://cleanui.herokuapp.com/auth").then(
+    axios.get("https://cleanui.herokuapp.com/auth", config).then(
       (res) => {
         if (res.data.loggedIn === true) {
           setUser(res.data.user);
@@ -31,7 +35,7 @@ function Testimonials() {
     );
 
     // fetch all review data
-    axios.get("https://cleanui.herokuapp.com/reviews").then((res) => {
+    axios.get("https://cleanui.herokuapp.com/reviews", config).then((res) => {
       setAllData(res.data);
     });
   }, []);
@@ -59,7 +63,7 @@ function Testimonials() {
       avatar: user.avatar,
     };
     axios
-      .post("https://cleanui.herokuapp.com/review", reviewData)
+      .post("https://cleanui.herokuapp.com/review", reviewData, config)
       .then((res) => {
         console.log(res);
         toast.success(res.data.message, {
