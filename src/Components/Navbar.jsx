@@ -25,7 +25,7 @@ function Navbar() {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get("http://localhost:5000/auth").then((res) => {
+    axios.get("https://cleanui.herokuapp.com/auth").then((res) => {
       if (res.data.loggedIn === true) {
         setUser(res.data.user);
       }
@@ -33,7 +33,7 @@ function Navbar() {
   }, [profile]);
 
   const userLogout = () => {
-    axios.get("http://localhost:5000/logout").then((res) => {
+    axios.get("https://cleanui.herokuapp.com/logout").then((res) => {
       console.log("Logout");
       navigate("/");
     });

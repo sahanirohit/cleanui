@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 
-import me from "../assets/images/me.jpg";
+import me from "../assets/images/me.png";
 
 function About() {
   return (
@@ -51,12 +51,12 @@ function About() {
             </div>
           </div>
         </div>
-        <div className="flex h-[28rem]">
+        <div className="flex h-full w-full justify-center">
           <img
             src={me}
             loading="lazy"
             alt="me"
-            className="w-full h-full object-cover"
+            className="w-60 h-full object-cover"
           />
         </div>
       </div>

@@ -14,12 +14,12 @@ function Portfolio() {
 
   useEffect(() => {
     // get project data
-    axios.get("http://localhost:5000/projectDetails").then((res) => {
+    axios.get("https://cleanui.herokuapp.com/projectDetails").then((res) => {
       setProjectData(res.data);
     });
 
     // fetch auth user details
-    axios.get("http://localhost:5000/auth").then((res) => {
+    axios.get("https://cleanui.herokuapp.com/auth").then((res) => {
       if (res.data.loggedIn === true) {
         setUser(res.data.user);
       } else {
@@ -60,7 +60,7 @@ function Portfolio() {
       projectDetails.append("projectURL", projectURL);
       projectDetails.append("image", image);
       axios
-        .post("http://localhost:5000/project", projectDetails)
+        .post("https://cleanui.herokuapp.com/project", projectDetails)
         .then((res) => {
           console.log(res);
           toast.success(res.data.message, {
@@ -150,14 +150,15 @@ function Portfolio() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute transform translate-y-full duration-300 group-hover:translate-y-0 group-hover:bg-dark-primary/80 inset-0 flex items-center justify-center">
-                  <button className="px-8 py-2 bg-active-accent text-white font-bold">
-                    <a
-                      href={item.projectURL}
-                      target="_blank"
-                      rel="noopener noreferrer">
-                      Preview
-                    </a>
-                  </button>
+                  {/* <button className=""> */}
+                  <a
+                    href={item.projectURL}
+                    target="_blank"
+                    className="px-8 py-2 bg-active-accent text-white font-bold"
+                    rel="noopener noreferrer">
+                    Preview
+                  </a>
+                  {/* </button> */}
                 </div>
               </div>
 

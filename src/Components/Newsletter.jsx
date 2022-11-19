@@ -91,7 +91,7 @@ function Newsletter() {
             Get weekly updates on the newest design stories, case studies and
             tips right in your mailbox.
           </p>
-          <div className="w-full sm:px-0 px-6 flex">
+          <div className="w-full lg:px-0 px-6 flex">
             <input
               type="email"
               placeholder="Email Address"

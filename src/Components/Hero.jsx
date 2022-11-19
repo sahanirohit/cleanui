@@ -1,6 +1,7 @@
 import React from "react";
 import { memo } from "react";
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import Typed from "react-typed";
 import heroImage from "../assets/images/heroImage.jpg";
 
@@ -31,9 +32,14 @@ function Hero() {
             />
           </h2>
           <div className="sm:space-x-8 flex flex-col sm:flex-row sm:space-y-0 space-y-3 pt-8">
-            <button className="px-6 py-3 bg-active-accent border-2 font-[Montserrat] font-bold rounded-xl border-active-accent text-white text-xl">
+            {/* <button className=""> */}
+            <Link
+              to="/portfolio"
+              className="px-6 py-3 bg-active-accent border-2 font-[Montserrat] font-bold rounded-xl border-active-accent text-white text-xl">
               My Portfolio
-            </button>
+            </Link>
+
+            {/* </button> */}
             <button className="px-6 py-3 duration-300 hover:bg-active-accent hover:border-active-accent bg-dark-primary border-2 font-[Montserrat] font-bold rounded-xl border-white text-white text-xl">
               <a
                 href="http://wa.me/918957912038"
@@ -48,13 +54,23 @@ function Hero() {
               <FaFacebook className="text-[#3b5998] cursor-pointer duration-300 text-3xl" />
             </div>
             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
-              <FaInstagram className="text-[#8a3ab9] cursor-pointer duration-300 " />
+              <a
+                href="https://instagram.com/rkhdigital"
+                target="_blank"
+                rel="noopener noreferrer">
+                <FaInstagram className="text-[#8a3ab9] cursor-pointer duration-300 " />
+              </a>
             </div>
             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
               <FaTwitter className="text-[#00AACC] cursor-pointer duration-300 " />
             </div>
             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center transform hover:-translate-y-2 duration-300 cursor-pointer">
-              <FaLinkedin className="text-[#3b5998] cursor-pointer duration-300" />
+              <a
+                href="https://www.linkedin.com/in/rohitsahani01"
+                target="_blank"
+                rel="noopener noreferrer">
+                <FaLinkedin className="text-[#3b5998] cursor-pointer duration-300" />
+              </a>
             </div>
           </div>
         </div>
