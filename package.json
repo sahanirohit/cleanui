@@ -1,6 +1,7 @@
 {
   "name": "cleanui",
   "version": "0.1.0",
+  "homepage": "https://rohitsahani.in/",
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.7.0",
